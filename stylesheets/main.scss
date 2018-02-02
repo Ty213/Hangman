@@ -49,9 +49,11 @@ button {
     width: 50px;
     height: 50px;
     font-size: 2em;
-    text-align: right;
+    text-align: center;
     color: $fontColor;
     font-family: 'Permanent Marker', cursive;
+    background-color: rgba(255, 255, 255, 0.20);
+    border: 2px solid $myColor;
 }
 .game {
     margin-top: 80px;
@@ -61,4 +63,9 @@ button {
     height: 80vh;
     background-image: url('../img/bg.jpg');
     background-size: 100%;
+}
+.game__guessed {
+    font-size: 1.5em;
+    color: red;
+    float: left;
 }

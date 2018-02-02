@@ -6,6 +6,7 @@ var lives = 5;
 var alreadyGuessed = [];
 var blanksGame = document.querySelector('.game__blanks');
 var userGuess = document.querySelector('.game__input');
+var guessed = document.querySelector('.guessed__list');
 var livesCounter = document.querySelector('.lives__counter');
 var guessButton = document.querySelector('.game__guess');
 var resetButton = document.querySelector('.reset');
@@ -23,12 +24,13 @@ guessButton.addEventListener("click", function(){
     console.log(checkGuess(userGuess.value,curWord));
     if(checkGuess(userGuess.value,curWord)) {
         updateBlanks(userGuess.value,curWord,blanks);
-        updateHTML(blanks,lives);
+        // updateHTML(blanks,lives);
     } else {
         lives--;
-        updateHTML(blanks,lives);
+        // updateHTML(blanks,lives);
     }
     alreadyGuessed.push(userGuess.value);
+    updateHTML(blanks,lives);
     winLose(blanks,lives);
     userGuess.value = "";
 });
@@ -58,6 +60,7 @@ function updateHTML(blanks,lives) {
         blanksGame.innerHTML += blanks[i] + " ";
     }
     livesCounter.innerHTML = lives;
+    updateGuesses(alreadyGuessed);
 }
 
 function checkGuess(guess,word) {
@@ -78,11 +81,11 @@ function winLose(blanks,lives) {
 
 function lost() {
     blanksGame.style.fontSize = '3em';
-    blanksGame.innerHTML = "You lose. Want to play again?"
+    blanksGame.innerHTML = "You lose. Play again?"
 }
 function win() {
     blanksGame.style.fontSize = '3em';
-    blanksGame.innerHTML = "You win! Want to play again?"
+    blanksGame.innerHTML = "You win! Play again?"
 }
 
 function hint() {
@@ -98,4 +101,18 @@ function hint() {
         hint();
     }
 }
+
+function updateGuesses(guesses) {
+    guessed.innerHTML = "";
+    for(let i = 0; i < guesses.length; i++) {
+        var item = document.createElement("li");
+	    var text = document.createTextNode(guesses[i]);
+        item.appendChild(text);
+        guessed.appendChild(item);
+    }
+}
+
+//to be added:
+//display on HTML what letters have already been guessed.
+
 updateHTML(blanks,lives);
