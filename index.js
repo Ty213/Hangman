@@ -8,9 +8,11 @@ var blanksGame = document.querySelector('.game__blanks');
 var userGuess = document.querySelector('.game__input');
 var guessed = document.querySelector('.guessed__list');
 var livesCounter = document.querySelector('.lives__counter');
+var gameLives = document.querySelector('.game__lives');
 var guessButton = document.querySelector('.game__guess');
 var resetButton = document.querySelector('.reset');
 var hintButton = document.querySelector('.hint');
+var gamePrompt = document.querySelector('.game_prompt');
 
 hintButton.addEventListener("click", function() {
     hint();
@@ -81,10 +83,21 @@ function winLose(blanks,lives) {
 
 function lost() {
     blanksGame.style.fontSize = '3em';
+    hintButton.style.display = "none";
+    guessButton.style.display = "none";
+    userGuess.style.display = "none";
+    gamePrompt.style.display = "none";
+    gameLives.style.display = "none";
     blanksGame.innerHTML = "You lose. Play again?"
 }
+
 function win() {
     blanksGame.style.fontSize = '3em';
+    hintButton.style.display = "none";
+    guessButton.style.display = "none";
+    userGuess.style.display = "none";
+    gamePrompt.style.display = "none";
+    gameLives.style.display = "none";
     blanksGame.innerHTML = "You win! Play again?"
 }
 
@@ -111,8 +124,4 @@ function updateGuesses(guesses) {
         guessed.appendChild(item);
     }
 }
-
-//to be added:
-//display on HTML what letters have already been guessed.
-
 updateHTML(blanks,lives);
